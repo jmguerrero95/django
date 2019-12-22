@@ -5,10 +5,8 @@
 				<h2>Listado de libros</h2>
 				<div class="col-md-12">
 					<b-table striped hover :items="books" :fields="fields">
-						<template v-slot:cell(action)="data">
-							<b-button size="sm" variant="primary" :to="{name:'EditBook', params: {bookId: data.item.id}}">	Editar
-							</b-button>
-							<b-button size="sm" variant="primary" :to="{name:'DeleteBook', params: {bookId: data.item.id}}">	Eliminar
+						<template slot="action" slot-scope="row">
+							<b-button size="sm" variant="primary">	Editar
 							</b-button>
 						</template>
 					</b-table>
@@ -37,7 +35,7 @@ export default {
 	},
 	methods: {
 		getBooks() {
-			const path = 'http://localhost:8000/api/v1.0/books/'
+			const path = 'http://3.15.13.45:8000/api/v1.0/books/'
 			axios.get(path).then((response) => {
 				this.books = response.data
 			})
